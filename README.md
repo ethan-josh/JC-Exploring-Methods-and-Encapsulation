@@ -287,7 +287,6 @@ class VarargsExample {
 
 ---
 
-
 ### Exercise 4: Access Specifiers
 
 **Code to run:**
@@ -389,3 +388,78 @@ class SmartDoor{
 **New Output**
 
 <img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex4-Challenge.png"/>
+
+---
+
+### Exercise 5: Static Methods and Variables
+
+**Code to run:**
+```
+public class Utility {
+
+    public static String getAppName() {
+        return "My Awesome App";
+    }
+
+    public String getInstanceId() {
+        return "ID-12345";
+    }
+
+    public static void main(String[] args) {
+        System.out.println("App Name: " + Utility.getAppName());
+
+        // The following line would cause a compile-time error
+        // System.out.println("Instance ID: " + Utility.getInstanceId());
+
+        Utility utilInstance = new Utility();
+        System.out.println("Instance ID: " + utilInstance.getInstanceId());
+    }
+}
+```
+**Predicted Output:**
+```
+//A
+App Name: My Awesome App
+Instance ID: ID-12345
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex5.png"/>
+
+**Explanation:**
+
+The correct output is A. 
+
+The getAppName method is static, so it is correctly called directly on the class (Utility.getAppName()). 
+
+The getInstanceId method is non-static (an instance method), so it must be called on an object of the class. The code first creates an instance (utilInstance) and then correctly calls the instance method on it.
+
+### Mini Challenge 5
+
+Create a Converter class. It should have a static method celsiusToFahrenheit(double celsius) that takes a temperature in Celsius and returns the equivalent in Fahrenheit. The formula is (celsius * 9.0/5.0) + 32. In the main method, call this static method without creating an instance of Converter and print the result. (Note: use 9.0/5.0 to ensure floating-point division).
+
+**Desired Output**
+```
+25.0 degrees C is 77.0 degrees F.
+```
+
+**Code to Add**
+```
+class Converter {
+    public static double celsiusToFahrenheit(double celsius){
+        return (celsius * 9.0/5.0) + 32;
+    }
+
+    public static void main(String[] args){
+        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0) + " degrees F.");
+        
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex5-Challenge.png"/>
+
+---

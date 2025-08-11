@@ -139,41 +139,70 @@ package org.example;
 //         // System.out.println(myAccount.balance);
 //     }
 // }
-class SmartDoor{
-    private boolean isLocked = false;
+// class SmartDoor{
+//     private boolean isLocked = false;
 
-    public void lockDoor(){
-        isLocked = true;
-        System.out.println("Locking the door...");
-    }
+//     public void lockDoor(){
+//         isLocked = true;
+//         System.out.println("Locking the door...");
+//     }
 
-    public void unlockDoor(){
-        isLocked = false;
-        System.out.println("Unlocking the door...");
-    }
+//     public void unlockDoor(){
+//         isLocked = false;
+//         System.out.println("Unlocking the door...");
+//     }
 
-    public void isLocked(){
-        if (isLocked){
-            System.out.println("Is the door locked? true");
-        }else{
-            System.out.println("Is the door locked? false");
-        }
-    }
+//     public void isLocked(){
+//         if (isLocked){
+//             System.out.println("Is the door locked? true");
+//         }else{
+//             System.out.println("Is the door locked? false");
+//         }
+//     }
 
-    public static void main(String[] args){
-        SmartDoor smartDoor = new SmartDoor();
-        smartDoor.isLocked();
-        smartDoor.lockDoor();
-        smartDoor.isLocked();
-        smartDoor.unlockDoor();
-        smartDoor.isLocked();
-    }
-}
+//     public static void main(String[] args){
+//         SmartDoor smartDoor = new SmartDoor();
+//         smartDoor.isLocked();
+//         smartDoor.lockDoor();
+//         smartDoor.isLocked();
+//         smartDoor.unlockDoor();
+//         smartDoor.isLocked();
+//     }
+// }
 
 // *********************
 
 // Exercise 5 **********
+// class Utility {
 
+//     public static String getAppName() {
+//         return "My Awesome App";
+//     }
+
+//     public String getInstanceId() {
+//         return "ID-12345";
+//     }
+
+//     public static void main(String[] args) {
+//         System.out.println("App Name: " + Utility.getAppName());
+
+//         // The following line would cause a compile-time error
+//         // System.out.println("Instance ID: " + Utility.getInstanceId());
+
+//         Utility utilInstance = new Utility();
+//         System.out.println("Instance ID: " + utilInstance.getInstanceId());
+//     }
+// }
+class Converter {
+    public static double celsiusToFahrenheit(double celsius){
+        return (celsius * 9.0/5.0) + 32;
+    }
+
+    public static void main(String[] args){
+        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0) + " degrees F.");
+        
+    }
+}
 // *********************
 
 // Exercise 6 **********
