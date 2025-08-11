@@ -510,6 +510,13 @@ Goodbye
 
 **Explanation:**
 
+The correct output is A). The Java compiler determines which version of the show method to invoke based on the arguments provided at the call site.
+
+d.show(42) matches show(int number).
+d.show("Hello") matches show(String message).
+d.show("Goodbye", 3) matches show(String message, int times).
+
+Each call correctly executes the logic of its corresponding overloaded method.
 
 ### Mini Challenge 6
 
@@ -544,3 +551,261 @@ class Converter {
 <img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex6-Challenge.png"/>
 
 ---
+
+### Exercise 7: Constructors and Constructor Overloading
+
+**Code to run:**
+```
+public class Pizza {
+    private String toppings;
+    private int size; // in inches
+
+    public Pizza() {
+        this.toppings = "Cheese";
+        this.size = 12;
+        System.out.println("Default pizza created.");
+    }
+
+    public Pizza(String toppings) {
+        this(); // Calls the no-argument constructor first
+        this.toppings = toppings;
+        System.out.println("Pizza with custom toppings created.");
+    }
+
+    public Pizza(String toppings, int size) {
+        this.toppings = toppings;
+        this.size = size;
+        System.out.println("Fully custom pizza created.");
+    }
+
+    public void display() {
+        System.out.println("Size: " + size + " inches, Toppings: " + toppings);
+    }
+
+    public static void main(String[] args) {
+        Pizza pizza1 = new Pizza();
+        pizza1.display();
+
+        Pizza pizza2 = new Pizza("Pepperoni");
+        pizza2.display();
+
+        Pizza pizza3 = new Pizza("Mushroom and Onion", 16);
+        pizza3.display();
+    }
+}
+```
+**Predicted Output:**
+```
+//A
+Default pizza created.
+Size: 12 inches, Toppings: Cheese
+Default pizza created.
+Pizza with custom toppings created.
+Size: 12 inches, Toppings: Pepperoni
+Fully custom pizza created.
+Size: 16 inches, Toppings: Mushroom and Onion
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex7.png"/>
+
+**Explanation:**
+
+The correct output is A).
+
+new Pizza() calls the no-argument constructor.
+
+new Pizza("Pepperoni") calls the one-argument constructor. Inside this constructor, this() invokes the no-argument constructor first, which sets the size to 12 and prints "Default pizza created.". Then, the one-argument constructor continues, overwriting the toppings and printing its own message.
+
+new Pizza("Mushroom and Onion", 16) calls the two-argument constructor directly.
+
+This technique, called constructor chaining, is useful for reducing code duplication.
+
+### Mini Challenge 7
+
+Create a Computer class with brand (String) and ramInGB (int) as instance variables. Create three constructors:
+
+A default constructor setting brand to "Generic" and ramInGB to 8.
+A constructor that only takes a brand and uses the default RAM.
+A constructor that takes both brand and ramInGB.
+Use constructor chaining (this()) to avoid repeating code. In main, create an object using each constructor and print its details.
+
+**Desired Output**
+```
+Computer 1: Brand = Generic, RAM = 8GB
+Computer 2: Brand = Dell, RAM = 8GB
+Computer 3: Brand = Apple, RAM = 16GB
+```
+
+**Code to Add**
+```
+class Computer {
+    String brand;
+    int ramInGB;
+
+    public Computer() {
+        this("Generic", 8);
+    }
+
+    public Computer(String brand) {
+        this(brand, 8);
+    }
+
+    public Computer(String brand, int ramInGB) {
+        this.brand = brand;
+        this.ramInGB = ramInGB;
+    }
+
+    public void displayDetails() {
+        System.out.println("Brand = " + brand + ", RAM = " + ramInGB + "GB");
+    }
+
+    public static void main(String[] args) {
+        System.out.print("Computer 1: ");
+        Computer computer1 = new Computer();
+        computer1.displayDetails();
+
+        System.out.print("Computer 2: ");
+        Computer computer2 = new Computer("Dell");
+        computer2.displayDetails();
+
+        System.out.print("Computer 3: ");
+        Computer computer3 = new Computer("Apple", 16);
+        computer3.displayDetails();
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex7-Challenge.png"/>
+
+---
+
+### Exercise 8: Constructors and Constructor Overloading
+
+**Code to run:**
+```
+public class Thermostat {
+    private double temperatureCelsius;
+
+    public Thermostat(double temp) {
+        // Use the setter in the constructor to enforce rules from the start
+        setTemperatureCelsius(temp);
+    }
+
+    public double getTemperatureCelsius() {
+        return this.temperatureCelsius;
+    }
+
+    public void setTemperatureCelsius(double temp) {
+        if (temp >= 10.0 && temp <= 30.0) {
+            this.temperatureCelsius = temp;
+        } else {
+            System.out.println("Error: Temperature must be between 10.0 and 30.0 Celsius.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Thermostat stat = new Thermostat(22.5);
+        System.out.println("Initial temp: " + stat.getTemperatureCelsius());
+
+        stat.setTemperatureCelsius(5.0); // Try to set an invalid temp
+        System.out.println("Temp after invalid change: " + stat.getTemperatureCelsius());
+
+        stat.setTemperatureCelsius(25.0); // Set a valid temp
+        System.out.println("Temp after valid change: " + stat.getTemperatureCelsius());
+    }
+}
+```
+**Predicted Output:**
+```
+//B
+Initial temp: 22.5
+Error: Temperature must be between 10.0 and 30.0 Celsius.
+Temp after invalid change: 22.5
+Temp after valid change: 25.0
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex8.png"/>
+
+**Explanation:**
+
+The correct output is B). The private variable temperatureCelsius is protected by the public setter method.
+
+The thermostat is initialized to a valid 22.5.
+stat.setTemperatureCelsius(5.0) is called. The if condition in the setter fails because 5.0 is not within the valid range. The error message is printed, and crucially, the temperatureCelsius variable is not updated.
+
+When getTemperatureCelsius is called again, it still holds the original value of 22.5.
+
+The final call with 25.0 is valid, and the temperature is successfully updated.
+
+This demonstrates how encapsulation maintains the integrity of an object's state.
+
+### Mini Challenge 8
+
+Create a User class with a private instance variable for a password (String).
+
+Provide a public getter, getPassword(), that returns a masked password (e.g., "********").
+Provide a public setter, setPassword(String password), that only sets the new password if it is at least 8 characters long. If it's too short, print an error message and do not change the password.
+Create a constructor that initializes the password using the setter.
+In main, test your class by creating a user, trying to set a short password, then a valid one, and printing the masked password each time.
+
+**Desired Output**
+```
+Error: Password must be at least 8 characters long.
+Current masked password: ********
+Attempting to set short password 'pass'...
+Error: Password must be at least 8 characters long.
+Current masked password: ********
+Attempting to set valid password 'secure_password_123'...
+Current masked password: *******************```
+```
+
+**Code to Add**
+```
+class User{
+    private String password = "12345678";
+
+    public void getPassword(){
+        int length = password.length();
+        System.out.print("Current masked password: ");
+        while(length > 0){
+            System.out.print("*");
+            length--;
+        }
+        System.out.println();
+    }
+
+    public void setPassword(String userInput){
+        if (userInput.length() >= 8){
+            System.out.println("Attempting to set valid password '" + userInput + "'...");
+            this.password = userInput;
+        }else{
+            System.out.println("Attempting to set short password '" + userInput + "'...");
+            System.out.println("Error: Password must be at least 8 characters long.");
+        }
+    }
+
+    public User(String userInput) {
+        setPassword(userInput);
+    }
+
+    public static void main(String[] args){
+        User user = new User("short");
+        user.getPassword();
+        user.setPassword("pass");
+        user.getPassword();
+        user.setPassword("secure_password_123");
+        user.getPassword();
+    }
+
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex8-Challenge.png"/>

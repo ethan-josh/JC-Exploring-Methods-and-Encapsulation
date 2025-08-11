@@ -231,26 +231,165 @@ package org.example;
 //     }
 // }
 
-class Converter {
-    public static double celsiusToFahrenheit(float celsius){
-        return (celsius * 9.0/5.0) + 32;
-    }
+// class Converter {
+//     public static double celsiusToFahrenheit(float celsius){
+//         return (celsius * 9.0/5.0) + 32;
+//     }
 
-    public static double fahrenheitToCelsius(double fahrenheit){
-        return (fahrenheit - 32) * 5.0/9.0;
-    }
+//     public static double fahrenheitToCelsius(double fahrenheit){
+//         return (fahrenheit - 32) * 5.0/9.0;
+//     }
 
-    public static void main(String[] args){
-        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0f) + " degrees F.");
-        System.out.println("77.0 degrees F is " + fahrenheitToCelsius(77.0) + " degrees C.");
-    }
-}
+//     public static void main(String[] args){
+//         System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0f) + " degrees F.");
+//         System.out.println("77.0 degrees F is " + fahrenheitToCelsius(77.0) + " degrees C.");
+//     }
+// }
 // *********************
 
 // Exercise 7 **********
+// class Pizza {
+//     private String toppings;
+//     private int size; // in inches
 
+//     public Pizza() {
+//         this.toppings = "Cheese";
+//         this.size = 12;
+//         System.out.println("Default pizza created.");
+//     }
+
+//     public Pizza(String toppings) {
+//         this(); // Calls the no-argument constructor first
+//         this.toppings = toppings;
+//         System.out.println("Pizza with custom toppings created.");
+//     }
+
+//     public Pizza(String toppings, int size) {
+//         this.toppings = toppings;
+//         this.size = size;
+//         System.out.println("Fully custom pizza created.");
+//     }
+
+//     public void display() {
+//         System.out.println("Size: " + size + " inches, Toppings: " + toppings);
+//     }
+
+//     public static void main(String[] args) {
+//         Pizza pizza1 = new Pizza();
+//         pizza1.display();
+
+//         Pizza pizza2 = new Pizza("Pepperoni");
+//         pizza2.display();
+
+//         Pizza pizza3 = new Pizza("Mushroom and Onion", 16);
+//         pizza3.display();
+//     }
+// }
+// class Computer {
+//     String brand;
+//     int ramInGB;
+
+//     public Computer() {
+//         this("Generic", 8);
+//     }
+
+//     public Computer(String brand) {
+//         this(brand, 8);
+//     }
+
+//     public Computer(String brand, int ramInGB) {
+//         this.brand = brand;
+//         this.ramInGB = ramInGB;
+//     }
+
+//     public void displayDetails() {
+//         System.out.println("Brand = " + brand + ", RAM = " + ramInGB + "GB");
+//     }
+
+//     public static void main(String[] args) {
+//         System.out.print("Computer 1: ");
+//         Computer computer1 = new Computer();
+//         computer1.displayDetails();
+
+//         System.out.print("Computer 2: ");
+//         Computer computer2 = new Computer("Dell");
+//         computer2.displayDetails();
+
+//         System.out.print("Computer 3: ");
+//         Computer computer3 = new Computer("Apple", 16);
+//         computer3.displayDetails();
+//     }
+// }
 // *********************
 
 // Exercise 8 **********
+// class Thermostat {
+//     private double temperatureCelsius;
 
+//     public Thermostat(double temp) {
+//         // Use the setter in the constructor to enforce rules from the start
+//         setTemperatureCelsius(temp);
+//     }
+
+//     public double getTemperatureCelsius() {
+//         return this.temperatureCelsius;
+//     }
+
+//     public void setTemperatureCelsius(double temp) {
+//         if (temp >= 10.0 && temp <= 30.0) {
+//             this.temperatureCelsius = temp;
+//         } else {
+//             System.out.println("Error: Temperature must be between 10.0 and 30.0 Celsius.");
+//         }
+//     }
+
+//     public static void main(String[] args) {
+//         Thermostat stat = new Thermostat(22.5);
+//         System.out.println("Initial temp: " + stat.getTemperatureCelsius());
+
+//         stat.setTemperatureCelsius(5.0); // Try to set an invalid temp
+//         System.out.println("Temp after invalid change: " + stat.getTemperatureCelsius());
+
+//         stat.setTemperatureCelsius(25.0); // Set a valid temp
+//         System.out.println("Temp after valid change: " + stat.getTemperatureCelsius());
+//     }
+// }
+
+class User{
+    private String password = "12345678";
+
+    public void getPassword(){
+        int length = password.length();
+        System.out.print("Current masked password: ");
+        while(length > 0){
+            System.out.print("*");
+            length--;
+        }
+        System.out.println();
+    }
+
+    public void setPassword(String userInput){
+        if (userInput.length() >= 8){
+            System.out.println("Attempting to set valid password '" + userInput + "'...");
+            this.password = userInput;
+        }else{
+            System.out.println("Attempting to set short password '" + userInput + "'...");
+            System.out.println("Error: Password must be at least 8 characters long.");
+        }
+    }
+
+    public User(String userInput) {
+        setPassword(userInput);
+    }
+
+    public static void main(String[] args){
+        User user = new User("short");
+        user.getPassword();
+        user.setPassword("pass");
+        user.getPassword();
+        user.setPassword("secure_password_123");
+        user.getPassword();
+    }
+
+}
 // *********************
