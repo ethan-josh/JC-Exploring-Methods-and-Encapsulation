@@ -463,3 +463,84 @@ class Converter {
 <img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex5-Challenge.png"/>
 
 ---
+
+### Exercise 6: Method Overloading
+
+**Code to run:**
+```
+public class Display {
+
+    public void show(String message) {
+        System.out.println("Message: " + message);
+    }
+
+    public void show(String message, int times) {
+        System.out.println("Repeating Message:");
+        for (int i = 0; i < times; i++) {
+            System.out.println(message);
+        }
+    }
+
+    public void show(int number) {
+        System.out.println("Number: " + number);
+    }
+
+    public static void main(String[] args) {
+        Display d = new Display();
+        d.show(42);
+        d.show("Hello");
+        d.show("Goodbye", 3);
+    }
+}
+```
+**Predicted Output:**
+```
+//A
+Number: 42
+Message: Hello
+Repeating Message:
+Goodbye
+Goodbye
+Goodbye
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex6.png"/>
+
+**Explanation:**
+
+
+### Mini Challenge 6
+
+In the Converter class from the previous challenge, overload the conversion method. Create a second static method, fahrenheitToCelsius(double fahrenheit), that converts a temperature from Fahrenheit to Celsius. The formula is (fahrenheit - 32) * 5.0/9.0. Test both methods in main.
+
+**Desired Output**
+```
+25.0 degrees C is 77.0 degrees F.
+77.0 degrees F is 25.0 degrees C.
+```
+
+**Code to Add**
+```
+class Converter {
+    public static double celsiusToFahrenheit(float celsius){
+        return (celsius * 9.0/5.0) + 32;
+    }
+
+    public static double fahrenheitToCelsius(double fahrenheit){
+        return (fahrenheit - 32) * 5.0/9.0;
+    }
+
+    public static void main(String[] args){
+        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0f) + " degrees F.");
+        System.out.println("77.0 degrees F is " + fahrenheitToCelsius(77.0) + " degrees C.");
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex6-Challenge.png"/>
+
+---

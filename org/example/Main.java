@@ -193,20 +193,58 @@ package org.example;
 //         System.out.println("Instance ID: " + utilInstance.getInstanceId());
 //     }
 // }
-class Converter {
-    public static double celsiusToFahrenheit(double celsius){
-        return (celsius * 9.0/5.0) + 32;
-    }
+// class Converter {
+//     public static double celsiusToFahrenheit(double celsius){
+//         return (celsius * 9.0/5.0) + 32;
+//     }
 
-    public static void main(String[] args){
-        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0) + " degrees F.");
+//     public static void main(String[] args){
+//         System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0) + " degrees F.");
         
-    }
-}
+//     }
+// }
 // *********************
 
 // Exercise 6 **********
+// class Display {
 
+//     public void show(String message) {
+//         System.out.println("Message: " + message);
+//     }
+
+//     public void show(String message, int times) {
+//         System.out.println("Repeating Message:");
+//         for (int i = 0; i < times; i++) {
+//             System.out.println(message);
+//         }
+//     }
+
+//     public void show(int number) {
+//         System.out.println("Number: " + number);
+//     }
+
+//     public static void main(String[] args) {
+//         Display d = new Display();
+//         d.show(42);
+//         d.show("Hello");
+//         d.show("Goodbye", 3);
+//     }
+// }
+
+class Converter {
+    public static double celsiusToFahrenheit(float celsius){
+        return (celsius * 9.0/5.0) + 32;
+    }
+
+    public static double fahrenheitToCelsius(double fahrenheit){
+        return (fahrenheit - 32) * 5.0/9.0;
+    }
+
+    public static void main(String[] args){
+        System.out.println("25.0 degrees C is " + celsiusToFahrenheit(25.0f) + " degrees F.");
+        System.out.println("77.0 degrees F is " + fahrenheitToCelsius(77.0) + " degrees C.");
+    }
+}
 // *********************
 
 // Exercise 7 **********
