@@ -92,3 +92,92 @@ class Car {
 
 ---
 
+### Exercise 2: Passing Parameters: Primitives vs. Objects
+
+**Code to run:**
+```
+public class ParameterPassing {
+
+    public static void modifyValue(int value) {
+        value = 100;
+        System.out.println("Inside method: " + value);
+    }
+
+    public static void main(String[] args) {
+        int originalValue = 50;
+        System.out.println("Before method call: " + originalValue);
+        modifyValue(originalValue);
+        System.out.println("After method call: " + originalValue);
+    }
+}
+```
+**Predicted Output:**
+```
+// B
+Before method call: 50
+Inside method: 100
+After method call: 50
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex2.png"/>
+
+**Explanation:**
+
+D) The code will not compile.
+
+The correct output is B. When modifyValue(originalValue) is called, a copy of originalValue's data (the number 50) is passed into the value parameter of the method. 
+
+Inside modifyValue, only this copy is changed to 100. 
+
+The originalValue variable in the main method is in a different scope and remains completely unaffected by the change made within the other method.
+
+### Mini Challenge 2
+
+Create a Student class with a single instance variable, name (a String). In a separate Main class, write a main method where you create a Student object. Also in the Main class, create a method changeStudentName(Student student, String newName) that takes a Student object and a new name, and changes the student's name using the object reference. In main, call this method and print the student's name before and after the call to prove that the original object was modified.
+
+**Desired Output**
+```
+Name before change: Alex
+Name after change: Jordan
+```
+
+**Code**
+```
+class Student {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+// Main.java
+public class Main {
+    public static void changeStudentName(Student student, String newName) {
+        student.setName(newName);
+    }
+
+    public static void main(String[] args) {
+        Student student = new Student("Alice");
+
+        System.out.println("Name before change: " + student.getName());
+        changeStudentName(student, "Bob");
+        System.out.println("Name after change: " + student.getName());
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex2-Challenge.png"/>
+
