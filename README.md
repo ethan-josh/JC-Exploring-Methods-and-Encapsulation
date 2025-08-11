@@ -230,7 +230,7 @@ Internally, the messages parameter is treated as an array of strings.
 
 The length property gives the count of arguments passed. The third call, printMessages(), is valid; it passes an empty array, resulting in a length of 0, and the for loop is simply skipped.
 
-### Mini Challenge 1
+### Mini Challenge 3
 
 Create a method named findLargest that takes a variable number of integers (int... numbers) and returns the largest integer from the list. If no numbers are provided, it should return Integer.MIN_VALUE. Test this method in main by calling it with different sets of numbers, including an empty call.
 
@@ -286,3 +286,106 @@ class VarargsExample {
 <img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex3-Challenge.png"/>
 
 ---
+
+
+### Exercise 4: Access Specifiers
+
+**Code to run:**
+```
+// In a file named Account.java
+public class Account {
+    private String owner = "Alice";
+    private double balance = 1200.50;
+
+    private String getDetails() {
+        return owner + " has a balance of $" + balance;
+    }
+
+    public void displayAccountDetails() {
+        // We can call the private method from within the class
+        System.out.println(getDetails());
+    }
+}
+
+// In a file named Bank.java
+public class Bank {
+    public static void main(String[] args) {
+        Account myAccount = new Account();
+        myAccount.displayAccountDetails();
+
+        // The following line would cause a compile-time error if uncommented
+        // System.out.println(myAccount.balance);
+    }
+}
+```
+**Predicted Output:**
+```
+Alice has a balance of $1200.50
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex4.png"/>
+
+**Explanation:**
+
+The correct output is A. 
+
+The owner and balance fields in the Account class are private, meaning they cannot be accessed directly from the Bank class. 
+
+However, the public method displayAccountDetails can be called from Bank. 
+
+This method, being part of the Account class, has permission to call its own private method, getDetails, which in turn accesses the private fields. 
+
+This is a classic example of encapsulation.
+
+### Mini Challenge 4
+
+Create a SmartDoor class. It should have a private boolean instance variable isLocked. It should also have three public methods: lockDoor(), unlockDoor(), and isLocked(). The first two methods should change the state of the isLocked variable, and the third should return its current state.
+
+**Desired Output**
+```
+Is the door locked? false
+Locking the door...
+Is the door locked? true
+Unlocking the door...
+Is the door locked? false
+```
+
+**Code to Add**
+```
+class SmartDoor{
+    private boolean isLocked = false;
+
+    public void lockDoor(){
+        isLocked = true;
+        System.out.println("Locking the door...");
+    }
+
+    public void unlockDoor(){
+        isLocked = false;
+        System.out.println("Unlocking the door...");
+    }
+
+    public void isLocked(){
+        if (isLocked){
+            System.out.println("Is the door locked? true");
+        }else{
+            System.out.println("Is the door locked? false");
+        }
+    }
+
+    public static void main(String[] args){
+        SmartDoor smartDoor = new SmartDoor();
+        smartDoor.isLocked();
+        smartDoor.lockDoor();
+        smartDoor.isLocked();
+        smartDoor.unlockDoor();
+        smartDoor.isLocked();
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex4-Challenge.png"/>
