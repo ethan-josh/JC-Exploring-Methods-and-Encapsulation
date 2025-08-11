@@ -181,3 +181,108 @@ public class Main {
 
 <img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex2-Challenge.png"/>
 
+---
+
+### Exercise 3: Using Varargs
+
+**Code to run:**
+```
+public class VarargsExample {
+
+    public static void printMessages(String... messages) {
+        System.out.println("Number of messages: " + messages.length);
+        for (String msg : messages) {
+            System.out.print(msg + " ");
+        }
+        System.out.println("\n");
+    }
+
+    public static void main(String[] args) {
+        printMessages("Hello", "World");
+        printMessages("Testing", "Varargs", "Here");
+        printMessages();
+    }
+}
+```
+**Predicted Output:**
+```
+// A
+Number of messages: 2
+Hello World 
+
+Number of messages: 3
+Testing Varargs Here 
+
+Number of messages: 0
+
+
+```
+
+**Actual Output:**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex3.png"/>
+
+**Explanation:**
+
+The correct output is A. The String... messages syntax allows the printMessages method to be called with any number of String arguments. 
+
+Internally, the messages parameter is treated as an array of strings. 
+
+The length property gives the count of arguments passed. The third call, printMessages(), is valid; it passes an empty array, resulting in a length of 0, and the for loop is simply skipped.
+
+### Mini Challenge 1
+
+Create a method named findLargest that takes a variable number of integers (int... numbers) and returns the largest integer from the list. If no numbers are provided, it should return Integer.MIN_VALUE. Test this method in main by calling it with different sets of numbers, including an empty call.
+
+**Desired Output**
+```
+Largest in (10, 5, 25, 15) is: 25
+Largest in (-5, -1, -10) is: -1
+Largest with no numbers is: -2147483648
+```
+
+**Code to Add**
+```
+class VarargsExample {
+
+    public static void printMessages(String... messages) {
+        System.out.println("Number of messages: " + messages.length);
+        for (String msg : messages) {
+            System.out.print(msg + " ");
+        }
+        System.out.println("\n");
+    }
+    public static int findLargest(int... numbers){
+        
+        if(numbers.length == 0){
+            //System.out.println("Largest with no numbers is: " + Integer.MIN_VALUE);
+            return Integer.MIN_VALUE;
+        }else{
+            int largest =0;
+            for (int x : numbers){
+                if(x > largest){
+                    largest = x;
+                }
+            }
+            //System.out.println("Largest in " + Arrays.toString(numbers) + " is: " + largest);
+            return largest;
+        }
+        
+    }
+    public static void main(String[] args) {
+        // printMessages("Hello", "World");
+        // printMessages("Testing", "Varargs", "Here");
+        // printMessages();
+
+        System.out.println("Largest in (10, 5, 25, 15) is: " + findLargest(10,5,25,15));
+        System.out.println("Largest in (-5, -1, -10) is: " + findLargest(-5, -1, -10));
+        System.out.println("Largest with no numbers is: " + findLargest());
+    }
+}
+```
+
+**New Output**
+
+<img src="https://github.com/ethan-josh/JC-Exploring-Methods-and-Encapsulation/blob/main/images/Ex3-Challenge.png"/>
+
+---
