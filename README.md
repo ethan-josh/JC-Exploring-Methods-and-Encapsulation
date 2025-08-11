@@ -48,7 +48,7 @@ Next, the drive(60) method is called. This method receives the integer 60 as its
 
 This returned string is stored in the status variable and then printed to the console.
 
-**Mini Challenge**
+### Mini Challenge 1
 
 Inside the Car class, add a new method named turnOffEngine. This method should not return any value and should print the message "Engine has been turned off." to the console. Modify the main method to call turnOffEngine after the car's status has been printed.
 
